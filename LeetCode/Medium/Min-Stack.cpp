@@ -1,19 +1,19 @@
 # Min Stack
 
 - Platform: LeetCode
-- URL: https://leetcode.com/problems/min-stack/description/?__cf_chl_f_tk=9Jxdtg1K7o78RX4uxxtDqN7peyarUDyqgE_dHRAY5lM-1783199549-1.0.1.1-OgIOTOG4r59jV43CswfJBVOszcEJGd8Q07pgBxFSHms
+- URL: https://leetcode.com/problems/min-stack/submissions/2056264580/?__cf_chl_f_tk=9Jxdtg1K7o78RX4uxxtDqN7peyarUDyqgE_dHRAY5lM-1783199549-1.0.1.1-OgIOTOG4r59jV43CswfJBVOszcEJGd8Q07pgBxFSHms
 - Difficulty: Medium
 - Language: C++
 - Status: Accepted
-- Runtime: N/A
-- Memory: N/A
-- Solved At: 2026-07-04T21:32:08.033Z
+- Runtime: 60
+ms
+- Memory: 150.94
+MB
+- Solved At: 2026-07-04T21:33:25.355Z
 
 ## Code
 ```cpp
-class MinStack {
-public:
-    stack<pair<int, int>> st; 
+stack<pair<int, int>> st; 
     MinStack() {
         
     }
@@ -46,8 +46,6 @@ public:
  * int param_3 = obj->top();
  * int param_4 = obj->getMin();
  */
-// Synced seamlessly with LeetHub Pro
-// Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
-// Get it here: https://chromewebstore.google.com/detail/
-bcilpkkbokcopmabingnndookdogmbna
+class MinStack {
+public:
 ```
