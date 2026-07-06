@@ -1,32 +1,51 @@
 # Sum of Subarray Ranges
 
 - Platform: LeetCode
-- URL: https://leetcode.com/problems/sum-of-subarray-ranges/submissions/2057990584/
+- URL: https://leetcode.com/problems/sum-of-subarray-ranges/description/
 - Difficulty: Medium
 - Language: C++
 - Status: Accepted
-- Runtime: 0 ms
-- Memory: 13.92
-MB
-- Solved At: 2026-07-06T11:55:01.181Z
+- Runtime: N/A
+- Memory: N/A
+- Solved At: 2026-07-06T18:42:26.980Z
 
 ## Code
 ```cpp
 class Solution {
 public:
-    long long subArrayRanges(vector<int>& nums) {
-        long long ans = 0; 
+    vector<int> PSE(vector<int>& nums) {
+        stack<int> st;
+        vector<int> ans(nums.size(), 0); 
         for(int i = 0; i < nums.size(); i++) {
-            int currMin = INT_MAX;
-                currMin = min(currMin, nums[j]);
-        }
-    }
-            for(int j = i; j < nums.size(); j++) {
-            int currMax = INT_MIN;
-                currMax = max(currMax, nums[j]);
-                ans += (currMax - currMin);
-        return ans;
-            
+            while(st.empty() == false && nums[st.top()] >= nums[i]) st.pop();
+            if(st.empty()) {
+                ans[i] = -1;
+            } else {
+                ans[i] = st.top();
             }
-};
+            st.push(i);
+        }
+        return ans;
+    }
+    vector<int> NSE(vector<int>& nums) {
+        stack<int> st; 
+        vector<int> ans(nums.size(), 0);
+        for(int i = nums.size() -1; i>= 0; i--) {
+            while(st.empty() == false && nums[st.top()] > nums[i]) st.pop();
+            if(st.empty()) {
+                ans[i] = nums.size();
+            } else {
+                ans[i] = st.top();
+            }
+            st.push(i);
+        }
+        return ans;
+    }
+    vector<int> PLE(vector<int>& nums) {
+        stack<int> st; 
+        vector<int> ans(nums.size(), 0);
+        for(int i = 0; i < nums.size(); i++) {
+            while(st.empty() == false && nums[st.top()] <= nums[i]) st.pop();
+            if(st.empty()) {
+                ans[i] = -1;
 ```
