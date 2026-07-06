@@ -1,14 +1,13 @@
 # Remove K Digits
 
 - Platform: LeetCode
-- URL: https://leetcode.com/problems/remove-k-digits/submissions/2058457207/
+- URL: https://leetcode.com/problems/remove-k-digits/description/
 - Difficulty: Medium
 - Language: C++
 - Status: Accepted
-- Runtime: 0 ms
-- Memory: 11.31
-MB
-- Solved At: 2026-07-06T18:42:16.819Z
+- Runtime: N/A
+- Memory: N/A
+- Solved At: 2026-07-06T20:09:19.437Z
 
 ## Code
 ```cpp
@@ -21,26 +20,26 @@ public:
         stack<char> st; 
         for(int i = 0; i < num.size(); i++) {
             while(st.empty() == false && st.top() > num[i] && k > 0) {
-        }
                 st.pop();
+                k--;
             }
             st.push(num[i]);
-                k--;
+        }
         while(k > 0) {
             st.pop();
-        }
             k--;
+        }
         string ans = "";
         while(!st.empty()) {
-        if(ans == "") return "0";
-        return ans;
+            ans += st.top();
+            st.pop();
+        }
         while(ans != "" && ans.back() == '0') {
             ans.pop_back();
         }
-            ans += st.top();
-        }
-    }
-            st.pop();
+        if(ans == "") return "0";
         reverse(ans.begin(), ans.end());
+        return ans;
+    }
 };
 ```
