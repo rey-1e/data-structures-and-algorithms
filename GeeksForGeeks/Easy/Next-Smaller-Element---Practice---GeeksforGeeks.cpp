@@ -7,7 +7,7 @@
 - Status: Accepted
 - Runtime: N/A
 - Memory: N/A
-- Solved At: 2026-07-05T12:30:37.754Z
+- Solved At: 2026-07-06T08:09:04.794Z
 
 ## Code
 ```cpp
@@ -15,22 +15,21 @@ class Solution {
   public:
     vector<int> nextSmallerEle(vector<int>& arr) {
         //  code here
-        vector<int> ans(arr.size(), -1);
         stack<int> st; 
-        
+        vector<int> ans(arr.size(), -1); 
         for(int i = arr.size() -1; i>= 0; i--) {
             while(st.empty() == false && st.top() >= arr[i]) {
                 st.pop();
             }
-            
             if(st.empty()) {
-                ans[i] = -1;
+                ans[i] = -1; 
             } else {
                 ans[i] = st.top();
             }
             
             st.push(arr[i]);
         }
+        
         return ans;
     }
 };
