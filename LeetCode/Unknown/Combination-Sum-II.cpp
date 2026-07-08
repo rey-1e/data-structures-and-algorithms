@@ -9,7 +9,7 @@
 ms
 - Memory: 41.72
 MB
-- Solved At: 2026-07-08T10:27:59.746Z
+- Solved At: 2026-07-08T10:28:03.684Z
 
 ## Code
 ```cpp
