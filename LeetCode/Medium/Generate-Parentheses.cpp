@@ -1,13 +1,15 @@
 # Generate Parentheses
 
 - Platform: LeetCode
-- URL: https://leetcode.com/problems/generate-parentheses/description/
+- URL: https://leetcode.com/problems/generate-parentheses/submissions/2060270705/
 - Difficulty: Medium
 - Language: C++
 - Status: Accepted
-- Runtime: N/A
-- Memory: N/A
-- Solved At: 2026-07-08T08:52:48.296Z
+- Runtime: 4
+ms
+- Memory: 16.74
+MB
+- Solved At: 2026-07-08T08:53:02.098Z
 
 ## Code
 ```cpp
