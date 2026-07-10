@@ -8,7 +8,7 @@
 - Runtime: 0 ms
 - Memory: 118.06
 MB
-- Solved At: 2026-07-10T10:29:53.165Z
+- Solved At: 2026-07-10T10:30:00.824Z
 
 ## Code
 ```cpp
@@ -37,10 +37,16 @@ public:
         return prev; 
         while(head != nullptr && head2 != nullptr) {
             if(head->val != head2->val) return false;
-        }
-        return true;
-    }
             head = head->next; 
             head2 = head2->next; 
-};
+ */
+ * };
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ *     ListNode() : val(0), next(nullptr) {}
+ *     int val;
+ *     ListNode *next;
+ * Definition for singly-linked list.
+ * struct ListNode {
+/**
 ```
