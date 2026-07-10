@@ -7,7 +7,7 @@
 - Status: Accepted
 - Runtime: N/A
 - Memory: N/A
-- Solved At: 2026-07-10T07:07:02.919Z
+- Solved At: 2026-07-10T08:46:20.877Z
 
 ## Code
 ```cpp
@@ -28,20 +28,20 @@ class Solution {
   public:
     Node *reverse(Node *head) {
         // code here
-        Node* start = head;
-        Node* end = head; 
+        Node* curr = head; 
         
-        while(end->next != nullptr) {
-            end = end->next; 
+        Node* prev = nullptr; 
+        Node* next = nullptr; 
+        
+        while(curr != nullptr) {
+            next = curr->next; 
+            curr->next = prev; 
+            curr->prev = next; 
+            prev = curr; 
+            curr = next; 
         }
         
-        while(start != end && end->next != start && start->prev != end) {
-            swap(end->data, start->data);
-            end = end->prev; 
-            start = start->next;
-        }
-        
-        return head;
+        return prev;
     }
 };
 ```
