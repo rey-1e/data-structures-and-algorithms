@@ -1,14 +1,14 @@
 # Reverse Linked List
 
 - Platform: LeetCode
-- URL: https://leetcode.com/problems/reverse-linked-list/submissions/2062670805/
+- URL: https://leetcode.com/problems/reverse-linked-list/submissions/2062675507/
 - Difficulty: Easy
 - Language: C++
 - Status: Accepted
 - Runtime: 0 ms
-- Memory: 13.30
+- Memory: 13.43
 MB
-- Solved At: 2026-07-10T09:14:17.873Z
+- Solved At: 2026-07-10T09:18:53.493Z
 
 ## Code
 ```cpp
@@ -26,16 +26,19 @@ class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
         
-        ListNode* curr = head; 
-        ListNode* prev = nullptr;
-        ListNode* next = nullptr; 
-        while(curr != nullptr) {
-            next = curr->next; 
-        }
+    void helper(ListNode*& curr, ListNode*& prev, ListNode*& next) {
+        if(curr == nullptr) return; 
     }
-            curr->next = prev; 
-            prev = curr; 
-            curr = next;
+    }
+        curr->next = prev; 
+        prev = curr; 
+        next = curr->next; 
+        curr = next; 
+        helper(curr, prev, next);
+        helper(curr, prev, next);
         return prev; 
+        ListNode* prev = nullptr; 
+        ListNode* next = nullptr; 
+        ListNode* curr = head; 
 };
 ```
