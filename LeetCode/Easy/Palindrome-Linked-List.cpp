@@ -1,14 +1,14 @@
 # Palindrome Linked List
 
 - Platform: LeetCode
-- URL: https://leetcode.com/problems/palindrome-linked-list/submissions/2062745575/
+- URL: https://leetcode.com/problems/palindrome-linked-list/
 - Difficulty: Easy
 - Language: C++
 - Status: Accepted
 - Runtime: 0 ms
 - Memory: 118.06
 MB
-- Solved At: 2026-07-10T10:30:00.824Z
+- Solved At: 2026-07-10T10:30:10.323Z
 
 ## Code
 ```cpp
@@ -39,14 +39,8 @@ public:
             if(head->val != head2->val) return false;
             head = head->next; 
             head2 = head2->next; 
- */
- * };
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- *     ListNode() : val(0), next(nullptr) {}
- *     int val;
- *     ListNode *next;
- * Definition for singly-linked list.
- * struct ListNode {
-/**
+        }
+        return true;
+    }
+};
 ```
