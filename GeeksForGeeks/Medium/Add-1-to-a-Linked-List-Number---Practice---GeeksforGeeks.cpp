@@ -7,7 +7,7 @@
 - Status: Accepted
 - Runtime: N/A
 - Memory: N/A
-- Solved At: 2026-07-12T08:41:52.372Z
+- Solved At: 2026-07-12T13:05:49.622Z
 
 ## Code
 ```cpp
@@ -25,34 +25,41 @@ public:
 class Solution {
   public:
     
-    int helper(Node* head) {
-        if(head == nullptr) {
-            return 1; 
+    Node* reversal(Node* head) {
+        Node* curr = head; 
+        Node* next = nullptr; 
+        Node* prev = nullptr; 
+        
+        while(curr != nullptr) {
+            next = curr->next; 
+            curr->next = prev; 
+            prev = curr; 
+            curr = next; 
         }
-            
-        head->data = head->data + helper(head->next);
         
-        if(head->data >= 10) {
-            head->data = 0; 
-            return 1; 
-        } else return 0; 
         
+        return prev; 
     }
   
     Node* addOne(Node* head) {
         // code here
+        head = reversal(head);
+        
+        int carry = 1; 
         Node* temp = head; 
-        
-        int curr = helper(temp);
-        
-        if(curr == 1) {
-            Node* newNode = new Node(1);
-            newNode->next = head; 
-            head = newNode;
+        while(temp != nullptr) {
+            
+            temp->data += carry;
+            if (temp->data >= 10) {
+                temp->data = 0; 
+                carry = 1; 
+            } else {
+                carry = 0; 
+                break;
+            }
+            
+            temp = temp->next;
         }
         
-        
-        return head; 
-    }
-};
+        head = reversal(head);
 ```
