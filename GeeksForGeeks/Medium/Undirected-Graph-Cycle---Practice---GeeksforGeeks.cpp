@@ -7,55 +7,57 @@
 - Status: Accepted
 - Runtime: N/A
 - Memory: N/A
-- Solved At: 2026-08-06T08:23:03.925Z
+- Solved At: 2026-08-07T10:48:43.221Z
 
 ## Code
 ```cpp
-public:
-    bool dfs(int i, vector<vector<int>>& adj, vector<int>& visited) {
+class Solution {
+  public:
+  
+    bool detect(int src, vector<vector<int>>& adj, vector<int>& visited) {
+        //push into the queue and mark it visited; 
+        visited[src] = 1; 
+        queue<pair<int, int>> q; 
+        q.push({src, -1});
         
-        queue<int> q; 
-        q.push(i);
-        visited[i] = 1; 
-        
-        for(auto val : adj[i]) {
-            if(visited[val] == 0) {
-                visited[val] = 1; 
-                return dfs(val, adj, visited);
-            } else {
-                return true;
+        while(!q.empty()) {
+            int node = q.front().first;
+            int parent = q.front().second;
+            
+            q.pop();
+            
+            for(auto val : adj[node]) {
+                if(visited[val] == 0) {
+                    q.push({val, node});
+                    visited[val] = 1; 
+                } else if(visited[val] == 1 && val != parent) {
+                    return true; 
+                }
             }
+            
         }
         
         
         return false;
-        
     }
   
     bool isCycle(int V, vector<vector<int>>& edges) {
-        
-        //edge case; 
-        if(V == 0 || edges.size() ==0) return false;
-        
-        
         // Code here
-        //create a graph out of this; 
-        vector<vector<int>> adj(V);    
         
+        
+        //create an adjacency list; 
+        vector<vector<int>> adj(V); 
         for(auto edge : edges) {
             adj[edge[0]].push_back(edge[1]);
             adj[edge[1]].push_back(edge[0]);
         }
         
-        //dfs for all the nodes; 
+        //create a visited array; 
+        vector<int> visited(V, 0);
         
-        for(int i = 0; i < adj.size(); i++) {
-        vector<int> visited(adj.size(), 0);
-            if(dfs(i, adj, visited)) {
-                return true; 
-            }
-        }
-        
-        
-        return false;
+        for(int i = 0; i < V; i++) {
+            if(!visited[i]) {
+                //call dfs; 
+                if(detect(i, adj, visited)) {
+                    return true;
 ```
