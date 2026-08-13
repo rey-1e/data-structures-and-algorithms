@@ -7,22 +7,16 @@
 - Status: Accepted
 - Runtime: N/A
 - Memory: N/A
-- Solved At: 2026-08-13T13:09:48.633Z
+- Solved At: 2026-08-13T13:12:57.336Z
 
 ## Code
 ```cpp
-class Solution {
-  public:
-    
-    bool dfs(int node, vector<vector<int>>& edges, vector<int>& visited, vector<int>& pathVisited) {
-        
-        visited[node] = 1; 
-        pathVisited[node] = 1; 
+pathVisited[node] = 1; 
         
         
         //call the dfs functiono again; 
         for(auto& val : edges[node]) {
-            if(visited[node] == 0) {
+            if(visited[val] == 0) {
                 //node is not visited; 
                 if(dfs(val, edges, visited, pathVisited)) return true;
             } else if(pathVisited[val] == 1){
@@ -44,10 +38,17 @@ class Solution {
         vector<int> visited(V);
         vector<int> pathVisited(V);
         
+        //create an adjacency matrix; 
+        vector<vector<int>> adj(V);
+        for(auto edge : edges) {
+            adj[edge[0]].push_back(edge[1]);
+        }
+        
+        
         for(int i  =0; i < V; i++) {
             if(visited[i] == 0) {
                 //this is unvisited
-                if(dfs(i, edges, visited, pathVisited)) return true; 
+                if(dfs(i, adj, visited, pathVisited)) return true; 
                 
             }
         }
