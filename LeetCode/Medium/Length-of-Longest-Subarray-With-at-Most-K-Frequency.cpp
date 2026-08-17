@@ -1,41 +1,39 @@
 # Length of Longest Subarray With at Most K Frequency
 
 - Platform: LeetCode
-- URL: https://leetcode.com/problems/length-of-longest-subarray-with-at-most-k-frequency/description/
+- URL: https://leetcode.com/problems/length-of-longest-subarray-with-at-most-k-frequency/submissions/2110309102/
 - Difficulty: Medium
 - Language: C++
 - Status: Accepted
-- Runtime: N/A
-- Memory: N/A
-- Solved At: 2026-08-13T13:13:39.463Z
+- Runtime: 0 ms
+- Memory: 149.30
+MB
+- Solved At: 2026-08-17T15:33:55.012Z
 
 ## Code
 ```cpp
 class Solution {
 public:
     int maxSubarrayLength(vector<int>& nums, int k) {
-        //k determines the frequency. 
-        if(nums.size() == 1) return 1; 
+        
         unordered_map<int, int> m;
-        int curr = 0; 
         int i = 0; 
-        for(int j = 0; j < nums.size(); j++) {
-            if(m.find(nums[j]) != m.end()) {
-                //exists; 
-                //check;
-                m[nums[j]]++;
-                if(m[nums[j]] > k) {
-                    //j - 1 is the valid last idx, while i is 
-                    the first; 
-                    curr = max(curr, j - i);
-                    //run i such that it reduces by k;
-                    while(i < nums.size() && m[nums[j]] > k) {
-                        m[nums[i]]--;
-                        i++;
-                    }
-                } 
-            } else {
-                //doesn't exist; 
-                m[nums[j]]++;
+        while(j < nums.size()) {
+        }
+            m[nums[j]]++;
+            if(m[nums[j]] > k) {
+                //calculate length; 
             }
+                //update i;    
+                maxVal = max(maxVal, j - i);
+                m[nums[j]]--;
+                while(i < nums.size() && nums[i] != nums[j]){
+                i++;
+        int maxVal = 0; 
+        maxVal = max(maxVal, j - i);
+        int j = 0; 
+            j++;
+                    m[nums[i]]--;
+                }
+                    i++;
 ```
