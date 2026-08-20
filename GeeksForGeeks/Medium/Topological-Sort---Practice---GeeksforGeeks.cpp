@@ -7,50 +7,50 @@
 - Status: Accepted
 - Runtime: N/A
 - Memory: N/A
-- Solved At: 2026-08-20T15:49:44.080Z
+- Solved At: 2026-08-20T18:22:57.228Z
 
 ## Code
 ```cpp
 class Solution {
   public:
-  
-    void dfs(int node, vector<vector<int>>& adj, vector<int>& visited, stack<int>& st) {
-        
-        //mark visited; 
-        visited[node] = 1; 
-        
-        for(auto val : adj[node]) {
-            if(visited[val] == 0) {
-                dfs(val, adj, visited, st);
-            }
-        }
-        
-        st.push(node);
-        
-        return; 
-        
-    }
-  
     vector<int> topoSort(int V, vector<vector<int>>& edges) {
         // code here
+        
+        //create an adjacency list; 
         vector<vector<int>> adj(V);
-        stack<int> st; 
-        vector<int> ans; 
+        
+        vector<int> indegree(V); 
         
         for(auto edge : edges) {
             adj[edge[0]].push_back(edge[1]);
+            //include the degree part as well; 
+            indegree[edge[1]]++; 
         }
         
-        //maintaining a visited array; 
-        vector<int> visited(V, 0);
+        //answer vector;         
+        vector<int> arr; 
+        queue<int> q; 
         
         for(int i = 0; i < V; i++) {
-            if(visited[i] == 0) {
-                //make sure to call dfs algo for this. 
-                dfs(i, adj, visited, st);
+            if(indegree[i] == 0) q.push(i);
+        }
+        
+        while(!q.empty()) {
+            int curr = q.front();
+            q.pop();
+            
+            arr.push_back(curr);
+            
+            for(auto& val : adj[curr]) {
+                indegree[val]--;
+                
+                if(indegree[val] == 0) {
+                    q.push(val);
+                }
             }
         }
-        while(!st.empty()) {
-            ans.push_back(st.top());
-            st.pop();
+        
+        
+        return arr; 
+    }
 ```
