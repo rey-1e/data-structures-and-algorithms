@@ -7,56 +7,49 @@
 - Status: Accepted
 - Runtime: N/A
 - Memory: N/A
-- Solved At: 2026-08-19T16:07:54.159Z
+- Solved At: 2026-08-22T07:26:27.431Z
 
 ## Code
 ```cpp
-//call for the entire adjacent nodes; 
-        for(auto val : adj[node]) {
-            if(!visited[val]) {
-                
-                if(hasCycle(val, adj, visited, pathVisited)) return true; 
-                
-            } else if(pathVisited[val]) {
-                return true; 
-            }
-            
-            
-        }
-        
-        
-        
-        pathVisited[node] = 0; 
-        return false;
-        
-    }
-  
+class Solution {
+  public:
     bool isCyclic(int V, vector<vector<int>> &edges) {
         // code here
+        vector<int> indegree(V);
         vector<vector<int>> adj(V); 
+        //toposort array; 
+        vector<int> arr; 
         
-        //adjancency list; 
+        //we now have the adjacency list; 
         for(auto edge : edges) {
             adj[edge[0]].push_back(edge[1]);
+            indegree[edge[1]]++;
         }
         
-        //visited array; 
-        vector<int> visited(V, 0); 
-        //pathVisited array; 
-        vector<int> pathVisited(V, 0); 
         
-        for(int i = 0; i < visited.size(); i++) {
-            if(!visited[i]) {
-                //call the dfs algo;
-                if(hasCycle(i, adj, visited, pathVisited)) return true; 
+        queue<int> q; 
+        
+        for(int i = 0; i < indegree.size(); i++) {
+            if(indegree[i] == 0) {
+                q.push(i);
+            }
+        }
+        
+        while(!q.empty()) {
+            int curr = q.front();
+            q.pop();
+            
+            arr.push_back(curr);
+            
+            for(auto val : adj[curr]) {
+                indegree[val]--;
                 
+                if(indegree[val] == 0) {
+                    q.push(val);
+                }
             }
         }
         
         
-        return false;
-        
-        
-    }
-};
+        return !(arr.size() == V);
 ```
