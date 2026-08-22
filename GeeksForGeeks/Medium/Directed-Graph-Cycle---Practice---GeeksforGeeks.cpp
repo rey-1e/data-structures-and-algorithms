@@ -7,7 +7,7 @@
 - Status: Accepted
 - Runtime: N/A
 - Memory: N/A
-- Solved At: 2026-08-22T07:26:27.431Z
+- Solved At: 2026-08-22T07:27:27.014Z
 
 ## Code
 ```cpp
@@ -17,9 +17,8 @@ class Solution {
         // code here
         vector<int> indegree(V);
         vector<vector<int>> adj(V); 
-        //toposort array; 
-        vector<int> arr; 
         
+        int count = 0; 
         //we now have the adjacency list; 
         for(auto edge : edges) {
             adj[edge[0]].push_back(edge[1]);
@@ -39,7 +38,7 @@ class Solution {
             int curr = q.front();
             q.pop();
             
-            arr.push_back(curr);
+            count ++;
             
             for(auto val : adj[curr]) {
                 indegree[val]--;
@@ -51,5 +50,5 @@ class Solution {
         }
         
         
-        return !(arr.size() == V);
+        return !(count == V);
 ```
