@@ -7,56 +7,47 @@
 - Status: Accepted
 - Runtime: N/A
 - Memory: N/A
-- Solved At: 2026-08-19T16:17:48.495Z
+- Solved At: 2026-08-22T16:52:34.473Z
 
 ## Code
 ```cpp
-check[node] = 0; 
-        
-        //check for adjacency here; 
-        for(auto val : adj[node]) {
-            if(!visited[val]) {
-                //check for other; 
-                if(helper(val, adj, visited, pathVisited, check)) return true; ; 
-                
-            } else if(pathVisited[val]) {
-                return true; 
-            }
-        }
-        
-        check[node] = 1; 
-        pathVisited[node] = 0; 
-        return false;
-    }
-  
+class Solution {
+  public:
     vector<int> safeNodes(int V, vector<vector<int>>& edges) {
         // Code here
-        vector<vector<int>> adj(V); 
-        
+        vector<vector<int>>adj(V);
+        vector<int> indegree(V);
         for(auto edge : edges) {
-            adj[edge[0]].push_back(edge[1]);
+            adj[edge[1]].push_back(edge[0]);
+            indegree[edge[0]]++;
         }
         
-        vector<int> visited(V, 0);
-        vector<int> pathVisited(V, 0);
-        vector<int> check(V, 1);
-        vector<int> ans;
+        queue<int> q; 
         
-        for(int i = 0; i < visited.size(); i++) {
-            if(!visited[i]) {
-                //call the function; 
-                helper(i, adj, visited, pathVisited, check);
+        for(int i = 0; i < V; i++) {
+            if(indegree[i] == 0) {
+                q.push(i);
             }
         }
         
-        //loops and stuff; 
-        for(int i = 0; i < check.size(); i++) {
-            if(check[i] == 1) {ans.push_back(i);}
+        vector<int> ans; 
+        
+        while(!q.empty()) {
+            int curr = q.front();
+            
+            ans.push_back(curr);
+            q.pop();
+            
+            for(auto val : adj[curr]) {
+                indegree[val]--;
+                
+                if(indegree[val] == 0) {
+                    q.push(val);
+                }
+            }
         }
         
+        sort(ans.begin(), ans.end());
         
         return ans;
-        
-    }
-};
 ```
