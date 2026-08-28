@@ -7,7 +7,7 @@
 - Status: Accepted
 - Runtime: N/A
 - Memory: N/A
-- Solved At: 2026-08-23T09:44:54.916Z
+- Solved At: 2026-08-28T08:26:56.298Z
 
 ## Code
 ```cpp
@@ -15,42 +15,42 @@ class Solution {
   public:
     string findOrder(vector<string> &words) {
         // code here
-        unordered_map<int, vector<int>> adj;
-        unordered_map<int, int> indegree;
+        unordered_map<char, vector<int>> adj; 
+        unordered_map<char, int> indegree; 
         
-        for (auto &word : words) {
-            for (char c : word) {
-                indegree[c - 'a'] = 0;
+        for(auto word : words) {
+            for(char c : word) {
+                indegree[c] = 0; 
             }
         }
         
-        for(int i = 0; i < words.size(); i++) {
-            if(i == words.size() -1) break;
+        
+        for(int i = 0; i < words.size() - 1; i++) {
+            string st1 = words[i]; 
+            string st2 = words[i+1];
             
-            int j = i + 1; 
+            int len = min(st1.length(), st2.length());
             
-            for(int k = 0; k < min(words[i].size(), words[j].size()); k++) {
-                if(words[i][k] != words[j][k]) {
-                    adj[words[i][k] - 'a'].push_back(words[j][k] - 'a');
-                    indegree[words[j][k] - 'a']++;
+            for(int ptr = 0; ptr < len; ptr++) {
+                //check chars; 
+                if(st1[ptr] != st2[ptr]) {
+                    adj[st1[ptr]].push_back(st2[ptr]);
+                    indegree[st2[ptr]]++;
                     break;
                 }
             }
         }
         
-        string ans = "";
+        queue<char> q; 
         
-        queue<int> q; 
         for(auto& [key, val] : indegree) {
             if(val == 0) {
+                //push into the queue. 
                 q.push(key);
             }
         }
         
+        string ans = "";
+        
         while(!q.empty()) {
-            int curr = q.front();
-            q.pop();
-            ans += (char)('a' + curr);
-            
-            for(auto val : adj[curr]) {
 ```
