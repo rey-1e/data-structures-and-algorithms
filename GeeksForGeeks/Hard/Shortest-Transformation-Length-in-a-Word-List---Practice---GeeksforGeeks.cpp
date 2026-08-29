@@ -7,7 +7,7 @@
 - Status: Accepted
 - Runtime: N/A
 - Memory: N/A
-- Solved At: 2026-08-29T10:21:27.515Z
+- Solved At: 2026-08-29T10:27:01.416Z
 
 ## Code
 ```cpp
@@ -19,11 +19,7 @@ class Solution {
         if(s == e) return 0; 
         
         queue<pair<string, int>> q; 
-        unordered_set<string> st; 
-        
-        for(auto word : words) {
-            st.insert(word);
-        }
+        unordered_set<string> st(words.begin(), words.end()); 
         
         
         q.push({s, 1});
@@ -40,17 +36,19 @@ class Solution {
             
             for(int i = 0; i < word.size(); i++) {
                 //changes for a word.
+                char original = word[i]; 
                 for(char c = 'a'; c <= 'z'; c++) {
-                    string duplicate = word; 
-                    duplicate[i] = c; 
-                    if(st.find(duplicate) != st.end()) {
-                        q.push({duplicate, level + 1}); 
-                        st.erase(duplicate);
+                    word[i] = c; 
+                    if(st.find(word) != st.end()) {
+                        q.push({word, level + 1}); 
+                        st.erase(word);
                     }
                 }
+                word[i] = original; 
             }
         }
         
         return 0; 
     }
+};
 ```
