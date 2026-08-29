@@ -7,48 +7,49 @@
 - Status: Accepted
 - Runtime: N/A
 - Memory: N/A
-- Solved At: 2026-08-28T13:46:40.095Z
+- Solved At: 2026-08-29T08:44:48.749Z
 
 ## Code
 ```cpp
-//stack 
-        stack<int> st; 
+}
         
-        for(int i = 0; i < visited.size(); i++) {
-            if(visited[i] == 0) {
-                topoSort(i, visited, adj, st);
-            }
-        }
         
-        //create a distance array; 
+        //we now have toposort in our stack; 
+        
+        //distance array; 
         vector<int> dist(V, INT_MAX);
         
-        int src = 0; //due to current problem; 
+        //hardcode src as 0; 
+        int src = 0; 
+        
         dist[src] = 0; 
         
         while(!st.empty()) {
+            //curr node; 
             int curr = st.top();
             st.pop();
             
-            for(auto val : adj[curr]) {
-                int v = val.first; 
-                int wt = val.second;
+            for(auto edge : adj[curr]) {
+                int v = edge.first;
+                int wt = edge.second;
                 
                 if(dist[curr] != INT_MAX) {
+                
+                    if(dist[curr] + wt < dist[v]) {
+                        dist[v] = dist[curr] + wt; 
+                    }
                     
-                if(dist[curr] + wt < dist[v]) {
-                    dist[v] = dist[curr] + wt; 
-                }   
                 }
             }
+            
+                
+            
         }
         
-        for(auto& val : dist) {
-            if(val == INT_MAX) val = -1; 
+        for(int i = 0; i < dist.size(); i++) {
+            if(dist[i] == INT_MAX) {
+                dist[i] = -1; 
+            }
         }
-        
-        return dist; 
-        
-    }
-};
+        return dist;
 ```
