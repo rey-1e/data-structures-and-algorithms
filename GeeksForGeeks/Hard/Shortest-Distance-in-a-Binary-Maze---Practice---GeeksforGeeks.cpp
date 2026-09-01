@@ -7,22 +7,11 @@
 - Status: Accepted
 - Runtime: N/A
 - Memory: N/A
-- Solved At: 2026-09-01T14:49:20.681Z
+- Solved At: 2026-09-01T14:49:41.958Z
 
 ## Code
 ```cpp
-class Solution {
-    public:
-    int shortestPath(vector<vector<int>> &mat, vector<int> &src, vector<int> &dest) {
-        // code here
-        if(mat[src[0]][src[1]] == 0 || mat[dest[0]][dest[1]] == 0) return -1; 
-        if(src == dest) return 0; 
-        int n = mat.size();
-        int m = mat[0].size();
-        
-        vector<vector<int>> dist(n, vector<int>(m, INT_MAX));
-        queue<pair<int, pair<int, int>> > q;
-        dist[src[0]][src[1]] = 0;
+dist[src[0]][src[1]] = 0;
         
         int delRow[] = {0, -1, 0, +1};
         int delCol[] = {-1, 0, +1, 0};
@@ -50,8 +39,18 @@ class Solution {
                         // change that dist;
                         dist[R][C] = distance + 1;
                         q.push({dist[R][C], {R, C}});
-                    //  if (R == dest[0] && C == dest[1]) {
-                    //      return dist[R][C];
-                    //  }
+                        if (R == dest[0] && C == dest[1]) {
+                            return dist[R][C];
+                        }
                     }
+                    
+                }
+                
+            }
+            
+        }
+        
+        return - 1;
+    }
+};
 ```
