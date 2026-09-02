@@ -7,22 +7,20 @@
 - Status: Accepted
 - Runtime: N/A
 - Memory: N/A
-- Solved At: 2026-07-30T13:14:10.795Z
+- Solved At: 2026-09-02T20:07:35.948Z
 
 ## Code
 ```cpp
 class Solution {
   public:
-  vector<int> traversal;
- 
-    void travel(int start, vector<vector<int>>& adj, vector<int>& v) {
+    void getdfs(int node, vector<int>& visited, vector<vector<int>>& adj, vector<int>& ans) {
+        visited[node] = 1; 
         
-        traversal.push_back(start);
-        v[start] = 1; 
-        
-        for(auto it : adj[start]) { 
-            if(!v[it]) {
-                travel(it, adj, v);
+        ans.push_back(node);
+        for(auto& val : adj[node]) {
+            if(visited[val] == 0) {
+                //cal the dfs for that functoin; 
+                getdfs(val, visited, adj, ans);
             }
         }
         
@@ -32,11 +30,15 @@ class Solution {
   
     vector<int> dfs(vector<vector<int>>& adj) {
         // Code here
-        vector<int> v(adj.size() , 0);
+        vector<int> ans; 
         
-        travel(0, adj, v);
+        vector<int> visited(adj.size(), 0);
+    
+        //since it's mentioned the graph is going to be connected;     
+        getdfs(0, visited, adj, ans);
         
-        return traversal;
+        
+        return ans;
     }
 };
 ```
