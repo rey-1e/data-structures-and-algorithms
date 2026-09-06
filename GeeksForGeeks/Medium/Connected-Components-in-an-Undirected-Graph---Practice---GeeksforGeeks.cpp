@@ -7,57 +7,51 @@
 - Status: Accepted
 - Runtime: N/A
 - Memory: N/A
-- Solved At: 2026-08-02T07:37:57.041Z
+- Solved At: 2026-09-06T17:05:10.078Z
 
 ## Code
 ```cpp
-//note from here. 
-            arr.push_back(curr);
+vector<int> bfs(int node, vector<vector<int>>& adj, vector<int>& visited) {
+        
+        visited[node] = 1; 
+        queue<int> q; 
+        q.push(node);
+        vector<int> vec; 
+        while(!q.empty()) {
+            int curr = q.front();
+            q.pop();
+            vec.push_back(curr);
             
-            for(auto& val : edges[curr]) {
-                
+            for(auto& val : adj[curr]) {
                 if(visited[val] == 0) {
-                q.push(val);
-                visited[val] = 1; 
-                    
+                    visited[val] = 1; 
+                    q.push(val);
                 }
-                
             }
         }
         
-        return arr; 
+        return vec; 
         
     }
   
     vector<vector<int>> getComponents(int V, vector<vector<int>>& edges) {
         // code here
-        //edges to adjacency list; 
-        
         vector<vector<int>> adj(V);
-        
-        for(auto vec : edges) {
-            adj[vec[0]].push_back(vec[1]);
-            adj[vec[1]].push_back(vec[0]);
+        vector<vector<int>> ans;
+        //make the connected graphs; 
+        for(auto edge : edges) {
+            adj[edge[0]].push_back(edge[1]);
+            adj[edge[1]].push_back(edge[0]);
         }
-        
-        
         vector<int> visited(V, 0);
-        vector<vector<int>> ans; 
         
-        
-        
-        
-        
-        for(int i = 0; i < V; i++) {
+        for(int i = 0; i < visited.size(); i++) {
             if(visited[i] == 0) {
-                vector<int> curr = bfs(adj, visited, i);
-                ans.push_back(curr);          
+            
+                ans.push_back(bfs(i, adj, visited));
             }
         }
-        
-        
-        
-        return ans;
+        return ans; 
     }
 };
 ```
