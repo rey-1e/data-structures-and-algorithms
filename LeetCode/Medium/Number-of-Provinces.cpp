@@ -1,40 +1,41 @@
 # Number of Provinces
 
 - Platform: LeetCode
-- URL: https://leetcode.com/problems/number-of-provinces/submissions/2088660132/
+- URL: https://leetcode.com/problems/number-of-provinces/submissions/2133085979/
 - Difficulty: Medium
 - Language: C++
 - Status: Accepted
 - Runtime: 0 ms
-- Memory: 19.80
+- Memory: 19.57
 MB
-- Solved At: 2026-07-31T10:22:03.147Z
+- Solved At: 2026-09-06T16:56:56.354Z
 
 ## Code
 ```cpp
-int findCircleNum(vector<vector<int>>& isConnected) {
-        
-        vector<int> v(isConnected.size(), 0);
-        int count = 0; 
-        for(int i = 0; i < v.size(); i++) {
-            if(v[i] == 0) {
-                count++;
-                bfs(i, isConnected, v);
-    }
-        while(!q.empty()) {
-            int curr = q.front();
-        }
-            q.pop();
-            for(int i = 0; i < isConnected.size(); i++) {
-                if(isConnected[curr][i] == 1 && !v[i]) {
+class Solution {
+public:
+    void dfs(int node, vector<vector<int>>& isConnected, vector<int>& visited) {
+        visited[node] = 1; 
+        for(int i = 0; i < isConnected.size(); i++) {
+            if(visited[i] == 0 && isConnected[node][i] == 1) {
+                dfs(i, isConnected, visited);
             }
-                    q.push(i);
-                }
-                    v[i] = 1; 
+        }
         return; 
-        q.push(start);
-        v[start] = 1; 
-        queue<int> q; 
+    }
+    int findCircleNum(vector<vector<int>>& isConnected) {
+        int n = isConnected.size();
+        vector<int> visited(n, 0);
+        int cnt = 0; 
+        for(int i = 0; i < n; i++) {
+            if(visited[i] == 0) {
+                cnt++;
+                //call the dfs function; 
+                
             }
         }
+        return cnt;
+    }
+                dfs(i, isConnected, visited);
+};
 ```
