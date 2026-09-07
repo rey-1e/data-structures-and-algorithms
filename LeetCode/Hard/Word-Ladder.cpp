@@ -1,44 +1,46 @@
 # Word Ladder
 
 - Platform: LeetCode
-- URL: https://leetcode.com/problems/word-ladder/submissions/2123891049/
+- URL: https://leetcode.com/problems/word-ladder/
 - Difficulty: Hard
 - Language: C++
 - Status: Accepted
 - Runtime: 0 ms
-- Memory: 21.20
+- Memory: 21.40
 MB
-- Solved At: 2026-08-29T14:01:01.872Z
+- Solved At: 2026-09-07T12:42:24.547Z
 
 ## Code
 ```cpp
-//put every word from wordList into the set; 
-        unordered_set<string> s(wordList.begin(), wordList.end());
-        queue<pair<string, int>> q; 
+queue<pair<string, int>> q; 
         q.push({beginWord, 1});
+        unordered_set<string> s(wordList.begin(), wordList.end());
         while(!q.empty()) {
-            string word = q.front().first; 
-            int level = q.front().second; 
-            q.pop();
-            for(int i = 0; i < word.size(); i++) {
-                char original = word[i]; 
-                for(char c = 'a'; c <= 'z'; c++) {
-                    word[i] = c; 
-                    if(s.find(word) != s.end()) {
-                        q.push({word, level + 1});
-                        s.erase(word);
-                    }
-                }
-            }
+            auto curr = q.front();
         }
-                word[i] = original; 
-            //case where it becomes equal to the end word; 
-            if(word == endWord) {
-                return level;
+            string word = curr.first;
+            int steps = curr.second;
+            //traverse over the word; 
+            for(int it = 0; it < word.size(); it++) {
+                char original = word[it];
             }
-        
-        if(beginWord == endWord) return 0; 
-class Solution {
-public:
+                for(char c = 'a'; c <= 'z'; c++) {
+                    word[it] = c; 
+                }
+                    if(s.find(word) != s.end()) {
+                        //we have found a word in the set; 
+                    }
+                        q.push({word, steps + 1});
+                        s.erase(word);
+                word[it] = original;
+            if(word == endWord) {
+                return steps;
+            }
+    }       
+            q.pop();
+        return 0; 
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
+public:
+class Solution {
+};
 ```
