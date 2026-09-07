@@ -1,48 +1,46 @@
 # Is Graph Bipartite?
 
 - Platform: LeetCode
-- URL: https://leetcode.com/problems/is-graph-bipartite/submissions/2133937509/
+- URL: https://leetcode.com/problems/is-graph-bipartite/
 - Difficulty: Medium
 - Language: C++
 - Status: Accepted
 - Runtime: 0 ms
-- Memory: N/A
-- Solved At: 2026-09-07T13:42:12.940Z
+- Memory: 17.49
+MB
+- Solved At: 2026-09-07T13:46:39.517Z
 
 ## Code
 ```cpp
 bool isBipartite(vector<vector<int>>& graph) {
         int V = graph.size();
-        vector<int> visited(V, 0);
-        vector<int> colors(V, 0);
-        for(int i= 0; i < V; i++) {
-            if(visited[i] == 0) {
-                //call the dfs function to color the numbers; 
+        vector<int> colors(V, -1);
+        for (int i = 0; i < V; i++) {
+            if (colors[i] == -1) {
+                // call the dfs function to color the numbers;
     }
+        return true;
         }
-            } else if(colors[val] == colors[node]) {
-                return false;
             }
-                    use = 1; 
+            } else if (colors[val] == colors[node]) {
+                return false;
                 }
-                colors[val] = use; 
-                if(!dfs(val, graph, visited, colors)) {
+                // then it's great;
+                if (!dfs(val, graph, !col, colors)) {
                     return false;
-                }
-        return true; 
-                } else {
-                    use = 2; 
-                if(colors[node] == 1) {
-                int use = 0; 
-            if(visited[val] == 0) {
-                //then it's great;
-        for(auto& val : graph[node]) {
-    bool dfs(int node, vector<vector<int>>& graph, vector<int>& visited, vector<int>& colors) {
-        
-        visited[node] = 1; 
+                if (!dfs(i, graph, 0, colors)) {
+                    return false;
+        for (auto& val : graph[node]) {
+            if (colors[val] == -1) {
+        colors[node] = col;
+    bool dfs(int node, vector<vector<int>>& graph, int col,
+             vector<int>& colors) {
 class Solution {
 public:
-                if(colors[i] == 0) {
-                    colors[i] = 1; 
                 }
+            }
+        }
+        return true;
+    }
+};
 ```
