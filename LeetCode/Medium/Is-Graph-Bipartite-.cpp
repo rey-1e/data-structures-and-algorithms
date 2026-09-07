@@ -1,39 +1,48 @@
 # Is Graph Bipartite?
 
 - Platform: LeetCode
-- URL: https://leetcode.com/problems/is-graph-bipartite/description/
+- URL: https://leetcode.com/problems/is-graph-bipartite/submissions/2133937509/
 - Difficulty: Medium
 - Language: C++
 - Status: Accepted
-- Runtime: N/A
+- Runtime: 0 ms
 - Memory: N/A
-- Solved At: 2026-08-13T13:13:30.979Z
+- Solved At: 2026-09-07T13:42:12.940Z
 
 ## Code
 ```cpp
-class Solution {
-public:
-    bool dfs(int i, vector<vector<int>>& graph, vector<int>& 
-    color, int fill) {
-        color[i] = fill;
-        for(auto val : graph[i]) {
-            if(color[val] == 0) {
-                //simply pass karu shakto with different fill; 
-                int newColor = 0; 
-                (fill == 1) ? newColor = 2 : newColor = 1; 
-                if(!dfs(val, graph, color, newColor)) return 
-                false;
-            } else if(color[val] == color[i]) {
+bool isBipartite(vector<vector<int>>& graph) {
+        int V = graph.size();
+        vector<int> visited(V, 0);
+        vector<int> colors(V, 0);
+        for(int i= 0; i < V; i++) {
+            if(visited[i] == 0) {
+                //call the dfs function to color the numbers; 
+    }
+        }
+            } else if(colors[val] == colors[node]) {
                 return false;
             }
-        }
+                    use = 1; 
+                }
+                colors[val] = use; 
+                if(!dfs(val, graph, visited, colors)) {
+                    return false;
+                }
         return true; 
-    }
-    bool isBipartite(vector<vector<int>>& graph) {
+                } else {
+                    use = 2; 
+                if(colors[node] == 1) {
+                int use = 0; 
+            if(visited[val] == 0) {
+                //then it's great;
+        for(auto& val : graph[node]) {
+    bool dfs(int node, vector<vector<int>>& graph, vector<int>& visited, vector<int>& colors) {
         
-        vector<int> color(graph.size(), 0);
-        for(int i= 0 ;i < color.size(); i++) {
-            if(color[i] == 0) {
-                //call the dfs. 
-                if(!dfs(i, graph, color, 1)) return false;
+        visited[node] = 1; 
+class Solution {
+public:
+                if(colors[i] == 0) {
+                    colors[i] = 1; 
+                }
 ```
