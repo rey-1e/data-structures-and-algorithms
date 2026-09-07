@@ -1,45 +1,50 @@
 # Course Schedule
 
 - Platform: LeetCode
-- URL: https://leetcode.com/problems/course-schedule/submissions/2133804935/
+- URL: https://leetcode.com/problems/course-schedule/submissions/2134106772/
 - Difficulty: Medium
 - Language: C++
 - Status: Accepted
 - Runtime: 0 ms
-- Memory: 19.42
+- Memory: 19.35
 MB
-- Solved At: 2026-09-07T11:05:18.375Z
+- Solved At: 2026-09-07T16:12:20.511Z
 
 ## Code
 ```cpp
-}
-    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
-        //find if there exists a cycle;
-            //if cycle exists -> this is not a DAG -> toposort cannot be applied -> no fulfillment.
-        //create a graph; 
-        int V = numCourses;
-        vector<vector<int>> adj(V);
-        for(auto& edge : prerequisites) {
-            adj[edge[1]].push_back(edge[0]);
-        }
-        vector<int> visited(V, 0);
-        vector<int> pathVisited(V, 0);
-        for(int i = 0; i < V; i++) {
-        pathVisited[node] = 0; 
-        return false;
-            if(visited[i] == 0) {
-                return true; // we have found a cycle; 
-            }
-        }
-            if(visited[val] == 0) {
-                if(dfs(val, visited, pathVisited, adj)) {
-                    return true;
-                }
-            } else if(pathVisited[val] == 1) {
-        for(auto& val : adj[node]) {
 class Solution {
 public:
-    bool dfs(int node, vector<int>& visited, vector<int>& pathVisited, vector<vector<int>>& adj) {
-        visited[node] = 1; 
-        pathVisited[node] = 1;
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        int V = numCourses;
+        vector<int> indegree(numCourses, 0);
+        for(auto& edge : prerequisites) {
+            //bi -> ai;
+        }
+            adj[edge[1]].push_back(edge[0]);
+            indegree[edge[0]]++;
+        vector<vector<int>> adj(V);
+        for(int i = 0; i < V; i++) {
+            if(indegree[i] == 0) {
+        }
+                q.push(i);
+            }
+        queue<int> q; 
+        
+        
+        vector<int> ans; 
+        while(!q.empty()) {
+            auto curr = q.front();
+            q.pop();
+        }
+            ans.push_back(curr);
+            for(auto& val : adj[curr]) {
+                indegree[val] --;
+            }
+                if(indegree[val] == 0) {
+                    q.push(val);
+                }
+    }
+        if(ans.size() == V) return true;
+        return false;
+};
 ```
