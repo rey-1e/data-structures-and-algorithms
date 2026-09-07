@@ -7,7 +7,7 @@
 - Status: Accepted
 - Runtime: N/A
 - Memory: N/A
-- Solved At: 2026-08-28T08:26:56.298Z
+- Solved At: 2026-09-07T17:45:51.245Z
 
 ## Code
 ```cpp
@@ -15,42 +15,45 @@ class Solution {
   public:
     string findOrder(vector<string> &words) {
         // code here
-        unordered_map<char, vector<int>> adj; 
-        unordered_map<char, int> indegree; 
-        
-        for(auto word : words) {
-            for(char c : word) {
-                indegree[c] = 0; 
+        vector<int> indegree(26, -1);
+        for(auto& word : words) {
+            for(auto& c : word) {
+                indegree[c - 'a'] = 0; 
+            }
+        }
+        int final = 0; 
+        for(int i = 0; i < indegree.size(); i++) {
+            if(indegree[i] == 0) {
+                final++;
             }
         }
         
+        vector<vector<int>> adj(26);
         
-        for(int i = 0; i < words.size() - 1; i++) {
-            string st1 = words[i]; 
-            string st2 = words[i+1];
+        for(int i = 0; i < words.size() -1; i++) {
+            string s1 = words[i];
+            string s2 = words[i+1];
             
-            int len = min(st1.length(), st2.length());
+            int len = min(s1.length(), s2.length());
             
-            for(int ptr = 0; ptr < len; ptr++) {
-                //check chars; 
-                if(st1[ptr] != st2[ptr]) {
-                    adj[st1[ptr]].push_back(st2[ptr]);
-                    indegree[st2[ptr]]++;
+            for(int j = 0; j < len; j++) {
+                if(s1[j] != s2[j]) {
+                    //we know that s1[j] occurs before s2[j];
+                    adj[s1[j] - 'a'].push_back(s2[j] - 'a');
+                    indegree[s2[j] - 'a']++;
                     break;
+                    
                 }
             }
         }
         
-        queue<char> q; 
-        
-        for(auto& [key, val] : indegree) {
-            if(val == 0) {
-                //push into the queue. 
-                q.push(key);
+        queue<int> q; 
+        for(int i = 0; i < indegree.size(); i++ ){
+            if(indegree[i] == 0) {
+                q.push(i);
             }
         }
         
         string ans = "";
-        
         while(!q.empty()) {
 ```
