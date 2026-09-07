@@ -1,14 +1,14 @@
 # Course Schedule II
 
 - Platform: LeetCode
-- URL: https://leetcode.com/problems/course-schedule-ii/submissions/2133956112/
+- URL: https://leetcode.com/problems/course-schedule-ii/submissions/2133956932/
 - Difficulty: Medium
 - Language: C++
 - Status: Accepted
 - Runtime: 0 ms
 - Memory: 18.58
 MB
-- Solved At: 2026-09-07T13:59:32.577Z
+- Solved At: 2026-09-07T14:00:13.460Z
 
 ## Code
 ```cpp
@@ -23,25 +23,22 @@ vector<vector<int>> adj(numCourses);
             if(visited[i] == 0) {
                 //call the dfs function; 
                 vector<int> pathVisited(numCourses, 0);
-        //solve with indegrees or a stack; 
-        //TOPOLOGICAL SORT; 
-    }
-    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
-        return true; 
+                bool curr = dfs(i, pathVisited, visited, adj, st);
+                if(!curr) {
+                    return {};
+                }
             }
         }
-        pathVisited[node] = 0; 
-        st.push(node);  
-            } else if(pathVisited[val] == 1) {
-                return false;
-                if(!dfs(val, pathVisited, visited, adj, st)) return false;
-                //call the dfs; 
-        for(auto& val : adj[node]) {
-            if(visited[val] == 0) {
-        pathVisited[node] = 1; 
-        visited[node] = 1; 
-    bool dfs(int node, vector<int>& pathVisited, vector<int>& visited, vector<vector<int>>& adj, stack<int>& st) 
-    {
-class Solution {
-public:
+        
+        vector<int> ans;
+        while(!st.empty()) {
+            ans.push_back(st.top());
+            st.pop();
+        }
+        return ans;
+    }
+};
+    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+        //TOPOLOGICAL SORT; 
+        //solve with indegrees or a stack;
 ```
