@@ -1,14 +1,14 @@
 # Course Schedule II
 
 - Platform: LeetCode
-- URL: https://leetcode.com/problems/course-schedule-ii/submissions/2133956932/
+- URL: https://leetcode.com/problems/course-schedule-ii/
 - Difficulty: Medium
 - Language: C++
 - Status: Accepted
 - Runtime: 0 ms
 - Memory: 18.58
 MB
-- Solved At: 2026-09-07T14:00:13.460Z
+- Solved At: 2026-09-07T14:00:21.096Z
 
 ## Code
 ```cpp
