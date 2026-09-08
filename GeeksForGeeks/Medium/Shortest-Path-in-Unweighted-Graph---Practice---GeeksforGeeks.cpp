@@ -7,7 +7,7 @@
 - Status: Accepted
 - Runtime: N/A
 - Memory: N/A
-- Solved At: 2026-08-29T09:12:33.564Z
+- Solved At: 2026-09-08T07:17:21.867Z
 
 ## Code
 ```cpp
@@ -15,33 +15,33 @@ class Solution {
   public:
     int shortestPath(int V, vector<vector<int>> &edges, int src, int dest) {
         // code here
-        vector<vector<int>> adj(V);
         
-        for(auto edge : edges) {
+        //create an adjacency list; 
+        vector<vector<int>> adj(V);
+        for(auto& edge : edges) {
             adj[edge[0]].push_back(edge[1]);
             adj[edge[1]].push_back(edge[0]);
         }
         
-        //distance array for relaxation; 
         vector<int> dist(V, INT_MAX);
         
-        //we are given the source; 
         dist[src] = 0; 
+        
         queue<pair<int, int>> q; 
-        q.push({src, 0});
+        q.push({0, src}); //{distance, source};
         
         while(!q.empty()) {
-            int node = q.front().first; 
-            int D = q.front().second;
+            auto curr = q.front();
+            int distance = curr.first;
+            int node = curr.second;
+            
             q.pop();
             
-            for(auto val : adj[node]) {
-                
-                if(D + 1 < dist[val]) {
-                    dist[val] = D + 1; 
-                    q.push({val, D + 1});
+            for(auto& val : adj[node]) {
+                if(distance + 1 < dist[val]) {
+                    dist[val] = distance + 1; 
+                    q.push({dist[val], val});
                 }
-                
             }
         }
         
