@@ -7,7 +7,7 @@
 - Status: Accepted
 - Runtime: N/A
 - Memory: N/A
-- Solved At: 2026-09-05T09:11:51.682Z
+- Solved At: 2026-09-09T08:59:37.576Z
 
 ## Code
 ```cpp
@@ -17,23 +17,22 @@ class Solution {
         // code here
         if(start == end) return 0; 
         
-        vector<int> dist(1000, INT_MAX);
-        
         queue<pair<int, int>> q; 
-        q.push({start, 0});
+        q.push({0, start});
+        
+        vector<int> dist(1000, INT_MAX);
+        dist[start] = 0; 
         
         int mod = 1000;
-        dist[start] = 0; 
         
         while(!q.empty()) {
             auto curr = q.front();
-            int node = curr.first;
-            int steps = curr.second;
-            
             q.pop();
+            int steps = curr.first;
+            int value = curr.second;
             
-            for(int i = 0; i < arr.size(); i++) {
-                int num = (node * arr[i]) % mod; 
+            for(int i = 0; i < arr.size();i ++) {
+                int num = (value * arr[i]) % mod; 
                 
                 if(num == end) {
                     return steps + 1; 
@@ -41,11 +40,12 @@ class Solution {
                 
                 if(steps + 1 < dist[num]) {
                     dist[num] = steps + 1; 
-                    q.push({num, steps + 1});
+                    q.push({steps + 1, num});
+                    
                 }
+                
             }
         }
-        
         
         return -1; 
     }
