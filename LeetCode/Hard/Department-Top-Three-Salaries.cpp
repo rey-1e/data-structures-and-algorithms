@@ -1,13 +1,13 @@
 # Department Top Three Salaries
 
 - Platform: LeetCode
-- URL: https://leetcode.com/problems/department-top-three-salaries/submissions/2162573613/?envType=study-plan-v2&envId=top-sql-50
+- URL: https://leetcode.com/problems/department-top-three-salaries/?envType=study-plan-v2&envId=top-sql-50
 - Difficulty: Hard
 - Language: C++
 - Status: Accepted
 - Runtime: 110 ms
 - Memory: N/A
-- Solved At: 2026-10-04T23:26:47.507Z
+- Solved At: 2026-10-04T23:27:29.040Z
 
 ## Code
 ```cpp
