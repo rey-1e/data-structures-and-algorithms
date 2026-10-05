@@ -1,13 +1,13 @@
 # Students and Examinations
 
 - Platform: LeetCode
-- URL: https://leetcode.com/problems/students-and-examinations/submissions/2162586785/?envType=study-plan-v2&envId=top-sql-50
+- URL: https://leetcode.com/problems/students-and-examinations/submissions/2162587022/?envType=study-plan-v2&envId=top-sql-50
 - Difficulty: Easy
 - Language: C++
 - Status: Accepted
 - Runtime: 197 ms
 - Memory: N/A
-- Solved At: 2026-10-05T00:14:50.539Z
+- Solved At: 2026-10-05T00:15:25.872Z
 
 ## Code
 ```cpp
