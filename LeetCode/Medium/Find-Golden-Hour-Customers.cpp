@@ -1,20 +1,20 @@
 # Find Golden Hour Customers
 
 - Platform: LeetCode
-- URL: https://leetcode.com/problems/find-golden-hour-customers/submissions/2174460814/
+- URL: https://leetcode.com/problems/find-golden-hour-customers/submissions/2174461008/
 - Difficulty: Medium
 - Language: C++
 - Status: Accepted
-- Runtime: 134 ms
+- Runtime: 123 ms
 - Memory: N/A
-- Solved At: 2026-10-17T09:57:12.838Z
+- Solved At: 2026-10-17T09:57:32.272Z
 
 ## Code
 ```cpp
 OR TIME(order_timestamp) BETWEEN '18:00' AND '21:00'
                     THEN 1
                 END
-            ) * 100.0
+            ) * 100
             /
             COUNT(order_id)
         , 0) AS peak_hour_percentage,
@@ -24,7 +24,7 @@ OR TIME(order_timestamp) BETWEEN '18:00' AND '21:00'
                 CASE
                     WHEN order_rating IS NOT NULL THEN 1
                 END
-            ) * 100.0
+            ) * 100
             /
             COUNT(order_id)
         ) AS ptg_order_rating
